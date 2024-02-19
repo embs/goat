@@ -1,0 +1,2 @@
+queues:
+  default: "<%= ENV['AWS_SQS_DEFAULT_QUEUE'] %>"
