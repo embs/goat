@@ -1,24 +1,19 @@
-# README
+# Dependencies
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- AWS CLI
+- Terraform
 
-Things you may want to cover:
+# Infrastructure
 
-* Ruby version
+## Setup
 
-* System dependencies
+    terraform init
+    terraform apply
 
-* Configuration
+## Validation
 
-* Database creation
+    terraform validate
 
-* Database initialization
+## Teardown
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+    terraform destroy
