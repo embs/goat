@@ -20,3 +20,12 @@ resource "aws_sqs_queue" "rails-lambda-worker" {
   message_retention_seconds = 86400
   receive_wait_time_seconds = 10
 }
+
+resource "aws_ecr_repository" "rails-lambda-worker" {
+  name                 = "rails-lambda-worker"
+  image_tag_mutability = "MUTABLE"
+
+  image_scanning_configuration {
+    scan_on_push = true
+  }
+}
