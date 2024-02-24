@@ -1,0 +1,4 @@
+#!/bin/bash -e
+
+TF_VAR_SECRET_KEY_BASE=$(RAILS_LOG_LEVEL=fatal RAILS_ENV=production bin/rails r "puts Rails.application.credentials.secret_key_base") \
+  terraform apply

@@ -1,0 +1,5 @@
+#!/bin/bash -e
+
+docker build -t 919206211910.dkr.ecr.us-east-1.amazonaws.com/rails-lambda-worker:14 \
+  -f Dockerfile.worker \
+  .

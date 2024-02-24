@@ -8,7 +8,7 @@
 ## Setup
 
     terraform init
-    terraform apply
+    bin/terraform-apply
 
 ## Validation
 
