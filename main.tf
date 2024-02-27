@@ -28,6 +28,7 @@ resource "aws_sqs_queue" "rails-lambda-worker" {
 resource "aws_ecr_repository" "rails-lambda-worker" {
   name                 = "rails-lambda-worker"
   image_tag_mutability = "MUTABLE"
+  force_delete         = true
 
   image_scanning_configuration {
     scan_on_push = true
