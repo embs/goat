@@ -28,8 +28,8 @@ TODO: generalize the account ID.
 
 ## Build
 
-    docker build -t 919206211910.dkr.ecr.us-east-1.amazonaws.com/rails-lambda-worker .
+    docker build -t 919206211910.dkr.ecr.us-east-1.amazonaws.com/goat -f Dockerfile.worker .
 
 ## Push
 
-    docker push 919206211910.dkr.ecr.us-east-1.amazonaws.com/rails-lambda-worker
+    docker push 919206211910.dkr.ecr.us-east-1.amazonaws.com/goat

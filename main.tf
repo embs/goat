@@ -17,23 +17,24 @@ variable "SECRET_KEY_BASE" {
   type = string
 }
 
-resource "aws_sqs_queue" "rails-lambda-worker" {
-  name                      = "rails-lambda-worker"
-  delay_seconds             = 90
-  max_message_size          = 2048
-  message_retention_seconds = 86400
-  receive_wait_time_seconds = 10
+resource "aws_sqs_queue" "goat" {
+  name                       = "goat"
+  delay_seconds              = 90
+  max_message_size           = 2048
+  message_retention_seconds  = 86400
+  receive_wait_time_seconds  = 10
+  visibility_timeout_seconds = 60
 }
 
-resource "aws_ecr_repository" "rails-lambda-worker" {
-  name                 = "rails-lambda-worker"
-  image_tag_mutability = "MUTABLE"
-  force_delete         = true
-
-  image_scanning_configuration {
-    scan_on_push = true
-  }
-}
+# resource "aws_ecr_repository" "goat" {
+#   name                 = "goat"
+#   image_tag_mutability = "MUTABLE"
+#   force_delete         = true
+#
+#   image_scanning_configuration {
+#     scan_on_push = true
+#   }
+# }
 
 data "aws_iam_policy_document" "assume_role" {
   statement {
@@ -58,10 +59,10 @@ resource "aws_iam_role_policy_attachment" "lambda_sqs_execution_role_attachment"
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaSQSQueueExecutionRole"
 }
 
-resource "aws_lambda_function" "rails-lambda-worker" {
+resource "aws_lambda_function" "goat" {
   package_type  = "Image"
-  image_uri     = "919206211910.dkr.ecr.us-east-1.amazonaws.com/rails-lambda-worker:14"
-  function_name = "rails-lambda-worker"
+  image_uri     = "919206211910.dkr.ecr.us-east-1.amazonaws.com/goat:1"
+  function_name = "goat"
   role          = aws_iam_role.iam_for_lambda.arn
   timeout       = 60
 
@@ -72,7 +73,7 @@ resource "aws_lambda_function" "rails-lambda-worker" {
   }
 }
 
-resource "aws_lambda_event_source_mapping" "rails-lambda-worker" {
-  event_source_arn = aws_sqs_queue.rails-lambda-worker.arn
-  function_name    = aws_lambda_function.rails-lambda-worker.arn
+resource "aws_lambda_event_source_mapping" "goat" {
+  event_source_arn = aws_sqs_queue.goat.arn
+  function_name    = aws_lambda_function.goat.arn
 }
