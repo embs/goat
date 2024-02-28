@@ -14,7 +14,8 @@ provider "aws" {
 }
 
 variable "SECRET_KEY_BASE" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 resource "aws_sqs_queue" "goat" {
